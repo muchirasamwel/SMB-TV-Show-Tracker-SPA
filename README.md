@@ -1,4 +1,4 @@
-# smbtvshow
+# smbtvshows
 
 ## Project setup
 ```
