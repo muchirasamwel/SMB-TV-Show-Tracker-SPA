@@ -4,6 +4,9 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div>
+    <button class="btn btn-danger">
+      Hello
+    </button>
     <router-view />
     <div class="foot">
       <h1>FOOTER and subscribe to news channel</h1>
