@@ -5,9 +5,9 @@ import vuetify from "./plugins/vuetify";
 import Vuex from 'vuex'
 import axios from 'axios';
 import ('./assets/bootstrap/js/jquery.js');
-import ('./assets/foundation.css')
-//import('./assets/bootstrap/js/bootstrap.js');
-// import ('./assets/bootstrap/css/bootstrap.css');
+//import ('./assets/foundation.css')
+import('./assets/bootstrap/js/bootstrap.js');
+import ('./assets/bootstrap/css/bootstrap.css');
 Vue.use(Vuex);
 Vue.config.productionTip = false;
 const store = new Vuex.Store({

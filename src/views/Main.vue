@@ -1,7 +1,22 @@
 <template>
     <div class="main">
         <div class="carousel">
-            <h1>CAROUSEL</h1>
+            <v-app>
+                <v-carousel
+                cycle
+                height="400"
+                hide-delimiter-background
+                show-arrows-on-hover
+                >
+                    <v-carousel-item
+                    v-for="(slide, i) in slides"
+                    :key="i"
+                    :src="getImg(slide.image)"
+                    >
+                        <p>Heru</p>
+                    </v-carousel-item>
+                </v-carousel>
+            </v-app>
         </div>
         <div class="trending">
             <h1>TRENDING</h1>
@@ -25,6 +40,7 @@
 
         .carousel {
             height: 30%;
+            overflow: hidden;
         }
 
         .trending {
@@ -55,7 +71,14 @@
             return {
                 component: "Home1",
                 showpop: false,
-                name: 'Home'
+                name: 'Home',
+                slides:[
+                    {image:'bootcamp.jpg'},
+                    {image:'field.jpg'},
+                    {image:'dream.jpg'},
+                    {image:'code back.jpeg'},
+                    {image:'peace.jpg'}
+                ]
             }
         },
         methods: {
@@ -67,6 +90,9 @@
                     this.component = Home1;
                 }
             },
+            getImg(img){
+                return require('@/assets/images/'+img);
+            }
         },
     }
 </script>
