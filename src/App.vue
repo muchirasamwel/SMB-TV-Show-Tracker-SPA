@@ -1,5 +1,5 @@
 <template>
-    <v-app id="app" >
+    <v-app id="app">
         <v-app-bar
                 absolute
                 elevate-on-scroll
@@ -8,56 +8,14 @@
                 fade-img-on-scroll
                 shrink-on-scroll
                 scroll-target="#scrolling-techniques-7"
-                id="navcontaner"
-        >
-            <!--            <v-toolbar-title >Title</v-toolbar-title>-->
+                id="navcontaner">
             <v-spacer></v-spacer>
             <div class="w-100">
-                <nav class="navbar navbar-expand-md navbar-light bg-light w-100">
-                    <a class="navbar-brand" href="#">
-                        <v-toolbar-title>SMB Tv Shows</v-toolbar-title>
-                    </a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navToggler"
-                            aria-controls="navToggler" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navToggler">
-                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                            <li class="nav-item home active">
-                                <a class="nav-link" href="#home">Home</a>
-                            </li>
-                            <li class="nav-item trending">
-                                <a class="nav-link " href="#trending">Trending</a>
-                            </li>
-                            <li class="nav-item movies">
-                                <a class="nav-link " href="#movies" @click="handleNavigation(0)">All Movies</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link " href="#movies" @click="handleNavigation(1)">Subscribed</a>
-                            </li>
-                        </ul>
-
-                        <v-btn icon color="black" class="user-btn">
-                            <v-icon>mdi-account</v-icon>
-                        </v-btn>
-
-                        <!--                      <v-btn icon>-->
-                        <!--                          <v-icon>mdi-dots-vertical</v-icon>-->
-                        <!--                      </v-btn>-->
-                    </div>
-                </nav>
-                <div class="w-100 row px-3 d-flex justify-content-center mylogo"><img :src="getImg('smb.webp')" alt=""
-                                                                                      width="100px"></div>
+                <NavBar :logged_user="logged_user" v-if="!adminview"></NavBar>
+                <AdminNavBar :logged_user="logged_user" v-else></AdminNavBar>
+                <div class="w-100 row px-3 d-flex justify-content-center mylogo">
+                    <img :src="getImg('smb.webp')" alt="" width="100px" style="height: inherit" id="my-image" ></div>
             </div>
-            <!--              <v-toolbar-items class="hidden-sm-and-down">-->
-            <!--                  <v-btn flat-->
-            <!--                  >Home</v-btn>-->
-            <!--              </v-toolbar-items>-->
-            <!--              <div id="nav">-->
-            <!--                  <router-link to="/">Home</router-link> |-->
-            <!--                  <router-link to="/about">About</router-link>-->
-            <!--              </div>-->
 
 
         </v-app-bar>
@@ -70,12 +28,7 @@
             <div class="pagecontent">
                 <router-view/>
             </div>
-
         </v-sheet>
-        <!--    <button class="btn btn-danger">-->
-        <!--      Hello-->
-        <!--    </button>-->
-
     </v-app>
 </template>
 
@@ -115,13 +68,9 @@
 
             }
         }
-
     }
-    @media (min-width: 600px) {
-        #navcontaner {
-            overflow: hidden;
 
-        }
+    @media (min-width: 600px) {
     }
 
     @mixin colapsing {
@@ -132,7 +81,6 @@
             width: 0%;
         }
     }
-
     #app {
         font-family: "Avenir", Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -161,6 +109,14 @@
                 color: black;
 
             }
+            #logged_user{
+                background-color: red;
+                ul{
+                    background-color: red;
+                    margin-right: 10px!important;
+                }
+            }
+
         }
 
         .v-toolbar__content {
@@ -228,32 +184,60 @@
 </style>
 <script>
     import $ from './assets/bootstrap/js/jquery.js';
+    import NavBar from "./components/NavBar";
+    import AdminNavBar from "./components/AdminNavBar";
     export default {
+        components:{
+            NavBar,AdminNavBar
+        },
+        data(){
+            return{
+                adminview :false
+            }
+        },
         methods: {
             getImg(img) {
                 return require('@/assets/images/' + img);
             },
-            handleNavigation(info) {
-                Event.shout('navigateMovies', info);
-            },
-            handleScroll ($e) {
-                let mdistancetotop=$('#movies').offset().top;
-                let tdistancetotop=$('#trending').offset().top;
+            handleScroll() {
+                try {
+                    let mdistancetotop = $('#movies').offset().top;
+                    let tdistancetotop = $('#trending').offset().top;
 
-                if(mdistancetotop>-($('#movies').height()+10)&&mdistancetotop<50){
-                    $(".active").removeClass('active');
-                    $(".movies").addClass('active');
+                    if (mdistancetotop > -($('#movies').height() + 10) && mdistancetotop < 50) {
+                        $("#my-image").slideUp();
+                        $(".active").removeClass('active');
+                        $(".movies").addClass('active');
 
-                }
-                else if(tdistancetotop>-($('#trending').height()+10)&&tdistancetotop<50){
-                    $(".active").removeClass('active');
-                    $(".trending").addClass('active');
-                }
-                else {
-                    $(".active").removeClass('active');
-                    $(".home").addClass('active');
+                    } else if (tdistancetotop > -($('#trending').height() + 10) && tdistancetotop < 50) {
+
+                        $("#my-image").slideUp();
+                        $(".active").removeClass('active');
+                        $(".trending").addClass('active');
+                    } else {
+                        $("#my-image").slideDown();
+                        $(".active").removeClass('active');
+                        $(".home").addClass('active');
+                    }
+                } catch (e) {
+                    console.log("error haddled");
                 }
             }
-    }
+        },
+        computed:{
+            logged_user(){
+                return this.$store.state.loggeduser;
+            }
+        },
+        created() {
+            Event.listen('navigateAdmin',()=>{
+                this.adminview=true;
+            })
+            Event.listen('navigateUser',()=>{
+                this.adminview=false;
+
+            })
+            this.$store.dispatch('getLoggedUser');
+        }
     }
 </script>

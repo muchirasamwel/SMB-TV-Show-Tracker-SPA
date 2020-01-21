@@ -1,5 +1,34 @@
 <template>
     <div class="main">
+        <v-snackbar
+                v-model="haserror"
+                color="red"
+                :timeout="3000"
+        >
+            {{ errors }}
+            <v-btn
+                    color="red"
+                    text
+                    @click="haserror = false"
+            >
+                X
+            </v-btn>
+        </v-snackbar>
+        <v-snackbar
+                v-model="hassuccess"
+                color="green"
+                :timeout="3000"
+        >
+            {{ success }}
+            <v-btn
+                    color="green"
+                    text
+                    @click="hassuccess = false"
+            >
+                X
+            </v-btn>
+        </v-snackbar>
+
         <div id="carousel">
             <v-app>
                 <v-carousel
@@ -11,12 +40,12 @@
                     <v-carousel-item
                             v-for="(slide, i) in slides"
                             :key="i"
-                            :src="getImg(slide.mimage)"
+                            :src="getImg(slide.image)"
                     >
                         <div class="s-data">
-                            <h2 class="s-title">{{slide.mname}}</h2>
-                            <p class="s-date my-1">{{slide.mdate}}</p>
-                            <p class="s-message">{{slide.mdescription}}</p>
+                            <h2 class="s-title">{{slide.title}}</h2>
+                            <p class="s-date my-1">{{slide.date}}</p>
+                            <p class="s-message">{{slide.description}}</p>
                         </div>
                     </v-carousel-item>
                 </v-carousel>
@@ -32,12 +61,12 @@
                         height="300px"
                         class="w-100"
                 >
-                    <v-tab class="text-white w-100" v-for="(slide, i) in slides"
+                    <v-tab class="text-white w-100" v-for="(trend, i) in trending"
                            :key="i">
-                        <img :src="getImg(slide.mimage)" width="100%">
-                        <span class="float-right position-absolute font-weight-bold slidename">{{slide.mname}}</span>
+                        <img :src="getImg(trend.image)" width="100%">
+                        <span class="float-right position-absolute font-weight-bold slidename">{{trend.title}}</span>
                         <span class="m-rating">
-                                {{slide.mrating}}
+                                {{trend.rating}}
                         </span>
                     </v-tab>
 
@@ -51,10 +80,10 @@
         </div>
         <div id="foot">
             <div>
-                <form action="" class="subscribe-form bg-secondary">
+                <form @submit.prevent="sendMail" class="subscribe-form bg-secondary">
                     <div class="form-inline d-flex justify-content-center">
                         <label class=" font-weight-bold labelsubscribe">Email</label>
-                        <input type="text" placeholder="Your Email " class="form-control inputsubscribe">
+                        <input type="text" placeholder="Your Email " class="form-control inputsubscribe" v-model="email.to">
                         <button class="btn btn-light btnsubscribe">Subscribe</button>
                     </div>
                     <h3 class="text-white">Subscribe To Our News Channel</h3>
@@ -227,39 +256,63 @@
 <script>
     import Movies from "./Movies.vue";
     import Movie from "./MovieView.vue";
+    import Subcribed from "./Subcribed";
+    import $ from "../assets/bootstrap/js/jquery";
 
     export default {
         name: "Main",
         components: {
-            Movies, Movie
+            Movies, Movie, Subcribed
         },
         created() {
+            Event.shout('navigateUser');
             Event.listen('showmovie', (movie) => {
                 this.$store.dispatch('putCurrentMovie', movie);
-                // alert("You want the movie" + id);
                 this.component = Movie;
             })
             Event.listen('backToTheater', () => {
                 this.component = Movies;
             })
             Event.listen('navigateMovies', ($event) => {
-                if ($event == 0) {
+                if ($event === 0) {
                     this.component = Movies;
-                } else
-                    this.component = Movie;
+                    $(".active").removeClass('active');
+                    $(".movies").addClass('active');
+                } else {
+                    this.component = Subcribed;
+                    $(".active").removeClass('active');
+                    $(".subscribed").addClass('active');
+                }
             })
+            this.$store.dispatch('fetchShows');
+            this.$store.dispatch('getLoggedUser');
+
         },
         data() {
             return {
+                hassuccess: false,
+                haserror: false,
                 component: "Movies",
                 showpop: false,
                 scrolled: false,
                 name: 'Home',
+                email:{}
             }
         },
         computed: {
+            trending(){
+                return this.$store.state.allshows.filter(show => {
+                    return (parseFloat(show.rating) > 5.4)
+                });
+            },
             slides() {
-                return this.$store.state.latestmovies;
+                return this.$store.state.allshows.filter(show => show.status === "hot");
+            },
+            errors() {
+                return this.$store.state.errors;
+            },
+            success() {
+                return this.$store.state.success;
             }
         },
         methods: {
@@ -271,9 +324,27 @@
                     this.component = Movies;
                 }
             },
-            getImg(img) {
-                return require('@/assets/images/' + img);
+            updateStatus() {
+                if (this.success) {
+                    this.hassuccess = true;
+                } else {
+                    this.hassuccess = false;
+                }
+                if (this.errors) {
+                    this.haserror = true;
+                } else {
+                    this.haserror = false;
+                }
             },
+            getImg(img) {
+                return (this.$store.state.path + img);
+            },
+           async sendMail(){
+                this.email.subject="welcome to SMB Tv shows";
+                this.email.message="You have successfully Subscribed to SMB news Channel. \n Thank  You.";
+                await this.$store.dispatch("subscribeToNews",this.email);
+                this.updateStatus();
+            }
 
         },
     }

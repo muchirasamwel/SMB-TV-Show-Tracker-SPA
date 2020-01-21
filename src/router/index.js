@@ -11,16 +11,16 @@ const routes = [
     component: Index
   },
   {
-    path: "/about",
-    name: "about",
+    path: "/admin",
+    name: "admin",
     component: () =>
-      import("../views/About.vue")
+      import("../views/Admin/AdminMain.vue")
   },
   {
-    path: "/index",
-    name: "index",
+    path: "/login",
+    name: "login",
     component: () =>
-        import("../views/Main.vue")
+        import("../views/Login.vue")
   }
 ];
 
