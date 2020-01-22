@@ -4,7 +4,7 @@
                 absolute
                 elevate-on-scroll
                 prominent
-                :src="getImg('field.jpg')"
+                :src="conditionalImage"
                 fade-img-on-scroll
                 shrink-on-scroll
                 scroll-target="#scrolling-techniques-7"
@@ -14,7 +14,7 @@
                 <NavBar :logged_user="logged_user" v-if="!adminview"></NavBar>
                 <AdminNavBar :logged_user="logged_user" v-else></AdminNavBar>
                 <div class="w-100 row px-3 d-flex justify-content-center mylogo">
-                    <img :src="getImg('smb.webp')" alt="" width="100px" style="height: inherit" id="my-image" ></div>
+                    <img :src="getImg('smb.webp')" alt="" width="100px" style="height: inherit" id="my-image"></div>
             </div>
 
 
@@ -81,6 +81,7 @@
             width: 0%;
         }
     }
+
     #app {
         font-family: "Avenir", Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -103,17 +104,24 @@
 
             .active {
                 font-weight: bold;
+
+                a {
+                    color: red !important;
+
+                }
             }
 
             .nav-item {
                 color: black;
 
             }
-            #logged_user{
+
+            #logged_user {
                 background-color: red;
-                ul{
+
+                ul {
                     background-color: red;
-                    margin-right: 10px!important;
+                    margin-right: 10px !important;
                 }
             }
 
@@ -186,13 +194,15 @@
     import $ from './assets/bootstrap/js/jquery.js';
     import NavBar from "./components/NavBar";
     import AdminNavBar from "./components/AdminNavBar";
+
     export default {
-        components:{
-            NavBar,AdminNavBar
+        components: {
+            NavBar, AdminNavBar
         },
-        data(){
-            return{
-                adminview :false
+        data() {
+            return {
+                adminview: false,
+                conditionalImage: this.getImg('field.jpg'),
             }
         },
         methods: {
@@ -220,21 +230,24 @@
                         $(".home").addClass('active');
                     }
                 } catch (e) {
-                    console.log("error haddled");
+                    //console.log("error haddled");
                 }
             }
         },
-        computed:{
-            logged_user(){
+        computed: {
+            logged_user() {
                 return this.$store.state.loggeduser;
             }
         },
         created() {
-            Event.listen('navigateAdmin',()=>{
-                this.adminview=true;
+            Event.listen('navigateAdmin', () => {
+                this.adminview = true;
+                this.conditionalImage = this.getImg('control 2.jpg');
             })
-            Event.listen('navigateUser',()=>{
-                this.adminview=false;
+            Event.listen('navigateUser', () => {
+                this.conditionalImage = this.getImg('scifi3.jpg');
+
+                this.adminview = false;
 
             })
             this.$store.dispatch('getLoggedUser');

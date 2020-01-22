@@ -12,6 +12,7 @@
     "axios": "^0.19.1",
     "core-js": "^3.4.4",
     "jquery": "^3.4.1",
+    "null-loader": "^3.0.0",
     "popper.js": "^1.16.0",
     "vue": "^2.6.10",
     "vue-router": "^3.1.3",

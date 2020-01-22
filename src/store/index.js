@@ -11,45 +11,11 @@ export default new Vuex.Store({
         searchval: "",
         thismovierated: false,
         path: 'http://showdb.ms/images/',
+        mailer:'http://showdb.ms/Notification/sendNotification.php',
+        bulkmailer:'http://showdb.ms/Notification/bulkNotify.php',
         subscribed: false,
         loggeduser: {},
-        latestmovies: [
-            {
-                mimage: 'bootcamp.jpg',
-                mname: "King Kong",
-                mdate: "Dec 21 2019",
-                mdescription: ' A group gets lost in the jungle',
-                mrating: '6.1'
-            },
-            {
-                mimage: 'field.jpg',
-                mname: "Jungle Danger",
-                mdate: "Dec 05 2019",
-                mdescription: ' Experince the jungle',
-                mrating: '6.1'
-            },
-            {
-                mimage: 'dream.jpg',
-                mname: "Sleep Beauty",
-                mdate: "August 16 2019",
-                mdescription: ' Love story that will give you chills',
-                mrating: '6.1'
-            },
-            {
-                mimage: 'code back.jpeg',
-                mname: "Black Coder",
-                mdate: "Jan 02 2020",
-                mdescription: ' Take programing to the next level',
-                mrating: '6.1'
-            },
-            {
-                mimage: 'peace.jpg',
-                mname: "Feel Happy",
-                mdate: "Nov 11 2019",
-                mdescription: ' Laugh your shit out ',
-                mrating: '6.1'
-            }
-        ],
+        pathtodb:'http://showdb.ms/database/',
         allshows: [],
         subscribedshows: [],
         currentcomments: [],
@@ -118,7 +84,7 @@ export default new Vuex.Store({
             const users = Object.assign({}, user);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: users, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -145,11 +111,11 @@ export default new Vuex.Store({
                 })
             })
         },
-        signUp: ({commit}, user) => {
+        signUp: ({commit,state}, user) => {
             const users = Object.assign({}, user);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: users, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -173,7 +139,7 @@ export default new Vuex.Store({
                 })
             })
         },
-        actOnShow: ({commit}, show) => {
+        actOnShow: ({commit,state}, show) => {
             const newshow = Object.assign({}, show);
             if (newshow.action !== "del") {
                 newshow.casts = newshow.casts.join(', ');
@@ -181,7 +147,7 @@ export default new Vuex.Store({
             }
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: newshow, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -213,11 +179,11 @@ export default new Vuex.Store({
                 })
             })
         },
-        actOnUser: ({commit}, user) => {
+        actOnUser: ({commit,state}, user) => {
             const newuser = Object.assign({}, user);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: newuser, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -242,11 +208,11 @@ export default new Vuex.Store({
                 })
             })
         },
-        actOnSubscriptions: ({commit}, subscription) => {
+        actOnSubscriptions: ({commit,state}, subscription) => {
             const newsubscription = Object.assign({}, subscription);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: newsubscription, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -270,13 +236,13 @@ export default new Vuex.Store({
                 })
             })
         },
-        uploadImage: ({commit}, imagefile) => {
+        uploadImage: ({commit,state}, imagefile) => {
             let data = new FormData();
             data.append('image', imagefile);
 
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/uploader.php',
+                    url: state.pathtodb+'uploader.php',
                     data: data, method: 'post',
                     headers: {
                         'Content-Type': 'multipart/form-data'
@@ -301,7 +267,7 @@ export default new Vuex.Store({
         fetchShows: ({commit, state}) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'/master.php',
                     data: {'table': 'shows', 'action': 'sel'}, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -324,7 +290,7 @@ export default new Vuex.Store({
         },
         async fetchShow({commit, state}, id) {
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {'table': 'shows', 'action': 'sel', 'id': id}, method: 'post',
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
@@ -345,7 +311,7 @@ export default new Vuex.Store({
         },
         async fetchRating({commit, state}, id) {
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     'table': 'ratings',
                     'action': 'sel',
@@ -366,7 +332,7 @@ export default new Vuex.Store({
         },
         async fetchUsers({commit, state}) {
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {'table': 'users', 'action': 'sel'}, method: 'post',
                 headers: {
                     "Content-Type": "application/x-www-form-urlencoded"
@@ -390,7 +356,7 @@ export default new Vuex.Store({
         fetchNewsSubscriptions: ({commit, state}) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {'table': 'newssubscription', 'action': 'sel'}, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -414,7 +380,7 @@ export default new Vuex.Store({
         fetchShowSubscriptions: ({commit, state}) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {'table': 'showsubscriptions', 'action': 'sel'}, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
@@ -438,7 +404,7 @@ export default new Vuex.Store({
         async findUsersSubscribed({commit, state}) {
             //alert(show.title);
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     'table': 'showsubscriptions',
                     'action': 'sel',
@@ -466,7 +432,7 @@ export default new Vuex.Store({
         async findSubscribed({commit, state}, show) {
             //alert(show.title);
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     'table': 'showsubscriptions',
                     'action': 'sel',
@@ -496,10 +462,11 @@ export default new Vuex.Store({
         putCurrentMovie: ({commit}, movie) => {
             commit('setCurrentMovie', movie);
         },
-        subscribeToShow: ({state, commit}, show) => {
-            return new Promise((resolve, reject) => {
-                axios({
-                    url: 'http://showdb.ms/database/master.php',
+        async subscribeToShow ({state, commit}, show){
+            let hassubscribed=false;
+            let now=new Date().toLocaleString();
+            let sendmail =  await axios({
+                    url: state.pathtodb+'master.php',
                     data: {
                         'show_id': show.id,
                         'user_id': state.loggeduser.id,
@@ -516,6 +483,7 @@ export default new Vuex.Store({
                 }).then(resp => {
                     resolve(resp);
                     if (resp.data.indexOf('success') >= 0) {
+                        hassubscribed = true;
                         commit('setSubscribed', true);
                         commit('setSuccess', 'You have successfully subscribed to the Show ' + show.title);
                     } else {
@@ -528,12 +496,28 @@ export default new Vuex.Store({
                     console.log(err);
                     reject(err)
                 })
+            if(hassubscribed)
+            return  await axios({
+                url: state.mailer,
+                data: {
+                    'to': loggeduser.email,
+                    'subject': "Subscribed To Show "+show.id,
+                    'message': "You have subscribed to the show "+show.title+" at "+now,
+                },
+                method: 'post',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            }).then(resp => {
+                console.log(resp.data);
+            }).catch(err => {
+                console.log(err);
             })
         },
         unsubscribeFromShow: ({state, commit}, show) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {
                         'show_id': show.id,
                         'user_id': state.loggeduser.id,
@@ -563,7 +547,7 @@ export default new Vuex.Store({
             const emaildata = Object.assign({}, email);
             let hassubscribed = false;
             let sendmail = await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     'email': email.to,
                     'table': "newssubscription",
@@ -592,7 +576,7 @@ export default new Vuex.Store({
             })
             if (!hassubscribed)
                 return await axios({
-                    url: 'http://showdb.ms/Notification/sendNotification.php',
+                    url: state.mailer,
                     data: emaildata,
                     method: 'post',
                     headers: {
@@ -612,7 +596,7 @@ export default new Vuex.Store({
         recordRating: ({commit, state}, rating) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {
                         "user_id": state.loggeduser.id,
                         "show_id": state.currentmovie.id,
@@ -643,7 +627,7 @@ export default new Vuex.Store({
         addComment: ({commit, state}, comment) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {
                         "user_id": state.loggeduser.id,
                         "show_id": state.currentmovie.id,
@@ -674,9 +658,33 @@ export default new Vuex.Store({
                 })
             })
         },
+        async bulkMailTo({state, commit},payload) {
+            return axios({
+                url: state.bulkmailer,
+                data:payload,
+                method: 'post',
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                }
+            })
+                .then(resp => {
+                    // console.log(resp.data.indexOf('Successfully') >= 0);
+                    if (resp.data.indexOf('Successfully') >= 0) {
+                        commit("setSuccess","Emails sent succesfully");
+                    } else {
+                        commit("setSuccess", '');
+                        commit("setError", 'Mails Sending hand errors');
+                        console.log(resp.data);
+                    }
+                }).catch(err => {
+                    console.log(err);
+                    commit("setSuccess", '');
+                    commit("setError", 'Mails Sending hand errors');
+                })
+        },
         async fetchComments({state, commit}) {
             return axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     "show_id": state.currentmovie.id,
                     "table": 'comments',
@@ -703,7 +711,7 @@ export default new Vuex.Store({
         },
         async fetchUser({state, commit}, id) {
             return await axios({
-                url: 'http://showdb.ms/database/master.php',
+                url: state.pathtodb+'master.php',
                 data: {
                     "id": id,
                     "table": 'users',
@@ -736,7 +744,7 @@ export default new Vuex.Store({
             //console.log(newrating);
             return new Promise((resolve, reject) => {
                 axios({
-                    url: 'http://showdb.ms/database/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {
                         'table': 'shows',
                         'action': 'up',
@@ -764,6 +772,7 @@ export default new Vuex.Store({
                 })
             })
         },
+
     }
 
 });

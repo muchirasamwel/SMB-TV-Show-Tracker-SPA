@@ -35,6 +35,15 @@
         </div>
     </nav>
 </template>
+<style lang="scss">
+    .nav-item{
+        a{
+            color: black!important;
+            font-weight: bolder;
+            -webkit-text-stroke: 1px white;
+        }
+    }
+</style>
 <script>
     export default {
         props:{

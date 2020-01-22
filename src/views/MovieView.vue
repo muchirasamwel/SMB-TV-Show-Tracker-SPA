@@ -275,7 +275,6 @@
                     console.log(this.user)
                     await this.$store.dispatch('fetchShow',movie.id);
                     let rate = parseInt(this.myrating) * 2;
-                    alert('You rate the show ' + typeof rate + ' out of 10');
                     await this.$store.dispatch('rateMovie',rate);
                     await this.$store.dispatch('recordRating',rate);
                     await this.$store.dispatch('fetchShow',movie.id);

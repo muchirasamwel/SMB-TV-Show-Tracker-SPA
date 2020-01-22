@@ -1,13 +1,22 @@
 <template>
-    <div>
-        <h3 class="text-center">SMB Tv Shows Admin panel</h3>
+    <div id="adminmain">
         <div id="maindata">
+        <h3 class="text-center">SMB Tv Shows Admin panel</h3>
             <keep-alive>
                 <component v-bind:is="component"/>
             </keep-alive>
         </div>
     </div>
 </template>
+<style lang="scss">
+    #adminmain{
+        padding: 20px;
+        background-color: black;
+    }
+    #maindata{
+        background-color: white;
+    }
+</style>
 <script>
     import Shows from "./ManageShows.vue";
     import Subscriptions   from "./ManageSubscriptions.vue"

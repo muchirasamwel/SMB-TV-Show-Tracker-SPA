@@ -1,5 +1,33 @@
 <template>
     <div>
+        <v-snackbar
+                v-model="haserror"
+                color="red"
+                :timeout="3000"
+        >
+            {{ errors }}
+            <v-btn
+                    color="red"
+                    text
+                    @click="haserror = false"
+            >
+                X
+            </v-btn>
+        </v-snackbar>
+        <v-snackbar
+                v-model="hassuccess"
+                color="green"
+                :timeout="3000"
+        >
+            {{ success }}
+            <v-btn
+                    color="green"
+                    text
+                    @click="hassuccess = false"
+            >
+                X
+            </v-btn>
+        </v-snackbar>
         <Dialog v-if="asktodelete2" @choiceMade="deleteShowSubscription($event)">
             <template slot="title">
                 Delete Show
@@ -181,7 +209,8 @@
                 this.showsmail.message;
                 this.showsmail.subject="Shows Notification";
                 this.showsmail.mails=mails;
-                console.log(this.showsmail);
+                await this.$store.dispatch('bulkMailTo', this.showsmail);
+                this.updateStatus();
             },
             async sendNewsNotification(){
                 let mails=[];
@@ -194,7 +223,8 @@
                 this.newsmail.message;
                 this.newsmail.subject="News Notification";
                 this.newsmail.mails=mails;
-                console.log(this.newsmail);
+                await this.$store.dispatch('bulkMailTo', this.newsmail);
+                this.updateStatus();
             },
             async deleteShowSubscription(choice) {
                 this.asktodelete = false;
@@ -232,14 +262,18 @@
             },
             showSubscriptions() {
                 const showsubscriptions = this.$store.state.showsubscriptions;
-                console.log(showsubscriptions);
                 for(let subscriber in showsubscriptions)
                 {
                     const subcribe = Object.assign({}, showsubscriptions[subscriber]);
                     showsubscriptions[subscriber].showtitle = this.getShow(subcribe.show_id);
                 }
-                console.log(showsubscriptions);
                 return showsubscriptions;
+            },
+            errors() {
+                return this.$store.state.errors;
+            },
+            success() {
+                return this.$store.state.success;
             }
         },
         created() {

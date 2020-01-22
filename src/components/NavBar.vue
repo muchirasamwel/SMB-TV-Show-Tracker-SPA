@@ -13,13 +13,14 @@
                     <router-link to="/admin" class="nav-link">Admin</router-link>
                 </li>
                 <li class="nav-item home active">
-                    <router-link to="/" class="nav-link" >Home</router-link>
+<!--                    <router-link to="/" class="nav-link" @click="navigateHome">Home</router-link>-->
+                    <a class="nav-link " href="#home" >Home</a>
                 </li>
                 <li class="nav-item trending">
                     <a class="nav-link " href="#trending">Trending</a>
                 </li>
                 <li class="nav-item movies">
-                    <a class="nav-link " href="#movies" @click="pHandleNavigation(0)">All Movies</a>
+                    <a class="nav-link " href="#movies" @click="pHandleNavigation(0)">All Shows</a>
                 </li>
                 <li class="nav-item subscribed">
                     <a class="nav-link " href="#movies" @click="pHandleNavigation(1)">Subscribed</a>

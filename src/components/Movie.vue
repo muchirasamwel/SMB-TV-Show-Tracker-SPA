@@ -36,23 +36,23 @@
         <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn icon color="black" class="m-show" @click="mShow(moviedata)" title="More about this Show">
-                <v-icon>mdi-magnify</v-icon>
+                <v-icon>mdi-eye</v-icon>
             </v-btn>
 
             <v-btn icon color="red" class="m-subscribe subscribe-heart" v-if="hasRated(moviedata.id)"
                    title="You Rated This Show">
-                <v-icon>mdi-heart</v-icon>
+                <v-icon>mdi-ticket</v-icon>
             </v-btn>
             <v-btn icon color="grey" class="m-subscribe normal-heart " title="Please Rate This Show" v-else>
-                <v-icon>mdi-heart</v-icon>
+                <v-icon>mdi-ticket</v-icon>
             </v-btn>
             <!--            <v-rating></v-rating>-->
             <!--            <v-btn icon color="white" class="v-rating">-->
             <!--                <v-icon>mdi-star</v-icon>-->
             <!--            </v-btn>-->
-            <v-btn icon color="black" class="m-share">
-                <v-icon>mdi-share-variant</v-icon>
-            </v-btn>
+<!--            <v-btn icon color="black" class="m-share">-->
+<!--                <v-icon>mdi-share-variant</v-icon>-->
+<!--            </v-btn>-->
         </v-card-actions>
     </v-card>
 </template>

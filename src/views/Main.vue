@@ -1,5 +1,5 @@
 <template>
-    <div class="main">
+    <div class="main" id="home">
         <v-snackbar
                 v-model="haserror"
                 color="red"
@@ -33,7 +33,7 @@
             <v-app>
                 <v-carousel
                         cycle
-                        height="500"
+                        height="600"
                         hide-delimiter-background
                         show-arrows-on-hover
                 >
@@ -135,7 +135,8 @@
         }
 
         #carousel {
-            height: 35%;
+            margin-top: 20px;
+            height: 42%;
             overflow: hidden;
         }
 
@@ -186,18 +187,17 @@
         }
 
         #movies {
-            background-color: wheat;
+            background:url("../assets/images/scifi2.jpg");
+            /*background-color: wheat;*/
             height: 60%;
             padding-top: 5%;
             text-align: start;
             overflow-y: scroll;
             overflow-x: initial;
         }
-
         .s-data {
             background-color: rgba(0, 0, 0, .2);
             margin-top: 25%;
-
             .s-date {
                 color: cyan;
                 text-shadow: 2px 2px 3px black;

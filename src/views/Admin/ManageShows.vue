@@ -496,7 +496,7 @@
                     await this.$store.dispatch('uploadImage', data);
 
                     if (this.success) {
-                        this.show.image = imagename;
+                        this.showedit.image = imagename;
                         this.editshowimage = "http://showdb.ms/images/" + imagename;
                     }
                     this.updateStatus();

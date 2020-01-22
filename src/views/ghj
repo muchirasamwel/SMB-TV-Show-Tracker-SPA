@@ -1,1 +1,111 @@
-git remote add live ssh://user@mydomain.com/var/repo/site.git
+git remote add live ssh://root@64.227.11.194/var/repo/tvshows.git
+
+
+
+( ! ) Deprecated: __autoload() is deprecated, use spl_autoload_register() instead in /home/vagrant/project_files/db/showdb/Notification/PHPMailer-5.2-stable/PHPMailerAutoload.php on line 45
+Call Stack
+#	Time	Memory	Function	Location
+1	0.0511	362112	{main}( )	.../bulkNotify.php:0
+2	0.0513	363208	mailthis( )	.../bulkNotify.php:36
+2020-01-21 08:55:14 Connection: opening to smtp.gmail.com:587, timeout=2000, options=array ()
+2020-01-21 08:55:19 Connection: opened
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "220 smtp.gmail.com ESMTP b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:20 SERVER -> CLIENT: 220 smtp.gmail.com ESMTP b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:20 CLIENT -> SERVER: EHLO showdb.ms
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-smtp.gmail.com at your service, [105.27.98.194]"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-SIZE 35882577"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-8BITMIME"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-STARTTLS"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-STARTTLS"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-ENHANCEDSTATUSCODES"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-STARTTLS250-ENHANCEDSTATUSCODES"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-PIPELINING"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-STARTTLS250-ENHANCEDSTATUSCODES250-PIPELINING"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250-CHUNKING"
+2020-01-21 08:55:20 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-STARTTLS250-ENHANCEDSTATUSCODES250-PIPELINING250-CHUNKING"
+2020-01-21 08:55:20 SMTP -> get_lines(): $str is "250 SMTPUTF8"
+2020-01-21 08:55:20 SERVER -> CLIENT: 250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-STARTTLS250-ENHANCEDSTATUSCODES250-PIPELINING250-CHUNKING250 SMTPUTF8
+2020-01-21 08:55:20 CLIENT -> SERVER: STARTTLS
+2020-01-21 08:55:21 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:21 SMTP -> get_lines(): $str is "220 2.0.0 Ready to start TLS"
+2020-01-21 08:55:21 SERVER -> CLIENT: 220 2.0.0 Ready to start TLS
+2020-01-21 08:55:22 CLIENT -> SERVER: EHLO showdb.ms
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-smtp.gmail.com at your service, [105.27.98.194]"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-SIZE 35882577"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-8BITMIME"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-ENHANCEDSTATUSCODES"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH250-ENHANCEDSTATUSCODES"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-PIPELINING"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH250-ENHANCEDSTATUSCODES250-PIPELINING"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250-CHUNKING"
+2020-01-21 08:55:22 SMTP -> get_lines(): $data is "250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH250-ENHANCEDSTATUSCODES250-PIPELINING250-CHUNKING"
+2020-01-21 08:55:22 SMTP -> get_lines(): $str is "250 SMTPUTF8"
+2020-01-21 08:55:22 SERVER -> CLIENT: 250-smtp.gmail.com at your service, [105.27.98.194]250-SIZE 35882577250-8BITMIME250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH250-ENHANCEDSTATUSCODES250-PIPELINING250-CHUNKING250 SMTPUTF8
+2020-01-21 08:55:22 Auth method requested: UNKNOWN
+2020-01-21 08:55:22 Auth methods available on the server: LOGIN,PLAIN,XOAUTH2,PLAIN-CLIENTTOKEN,OAUTHBEARER,XOAUTH
+2020-01-21 08:55:22 Auth method selected: LOGIN
+2020-01-21 08:55:22 CLIENT -> SERVER: AUTH LOGIN
+2020-01-21 08:55:23 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:23 SMTP -> get_lines(): $str is "334 VXNlcm5hbWU6"
+2020-01-21 08:55:23 SERVER -> CLIENT: 334 VXNlcm5hbWU6
+2020-01-21 08:55:23 CLIENT -> SERVER: dGVhYmFndGFzdGVzQGdtYWlsLmNvbQ==
+2020-01-21 08:55:23 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:23 SMTP -> get_lines(): $str is "334 UGFzc3dvcmQ6"
+2020-01-21 08:55:23 SERVER -> CLIENT: 334 UGFzc3dvcmQ6
+2020-01-21 08:55:23 CLIENT -> SERVER: dGVhYmFndGFzdGVzQDE=
+2020-01-21 08:55:24 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:24 SMTP -> get_lines(): $str is "235 2.7.0 Accepted"
+2020-01-21 08:55:24 SERVER -> CLIENT: 235 2.7.0 Accepted
+2020-01-21 08:55:24 CLIENT -> SERVER: MAIL FROM:<admin@smbtvshows.com>
+2020-01-21 08:55:25 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:25 SMTP -> get_lines(): $str is "250 2.1.0 OK b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:25 SERVER -> CLIENT: 250 2.1.0 OK b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:25 CLIENT -> SERVER: RCPT TO:<samkan.sk1.sm@gmail.com>
+2020-01-21 08:55:25 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:25 SMTP -> get_lines(): $str is "250 2.1.5 OK b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:25 SERVER -> CLIENT: 250 2.1.5 OK b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:25 CLIENT -> SERVER: DATA
+2020-01-21 08:55:26 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:26 SMTP -> get_lines(): $str is "354 Go ahead b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:26 SERVER -> CLIENT: 354 Go ahead b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:26 CLIENT -> SERVER: Date: Tue, 21 Jan 2020 08:55:14 +0000
+2020-01-21 08:55:26 CLIENT -> SERVER: To: samkan.sk1.sm@gmail.com
+2020-01-21 08:55:26 CLIENT -> SERVER: From: SMB TV SHOWS <admin@smbtvshows.com>
+2020-01-21 08:55:26 CLIENT -> SERVER: Subject: News Notification
+2020-01-21 08:55:26 CLIENT -> SERVER: Message-ID: <36dd40e1976f484296ea82d63c95ec6c@showdb.ms>
+2020-01-21 08:55:26 CLIENT -> SERVER: X-Mailer: PHPMailer 5.2.27 (https://github.com/PHPMailer/PHPMailer)
+2020-01-21 08:55:26 CLIENT -> SERVER: MIME-Version: 1.0
+2020-01-21 08:55:26 CLIENT -> SERVER: Content-Type: text/plain; charset=iso-8859-1
+2020-01-21 08:55:26 CLIENT -> SERVER:
+2020-01-21 08:55:26 CLIENT -> SERVER: Hello there
+2020-01-21 08:55:26 CLIENT -> SERVER:
+2020-01-21 08:55:26 CLIENT -> SERVER: .
+2020-01-21 08:55:27 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:27 SMTP -> get_lines(): $str is "250 2.0.0 OK 1579596927 b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:27 SERVER -> CLIENT: 250 2.0.0 OK 1579596927 b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:27 CLIENT -> SERVER: RSET
+2020-01-21 08:55:28 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:28 SMTP -> get_lines(): $str is "250 2.1.5 Flushed b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:28 SERVER -> CLIENT: 250 2.1.5 Flushed b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:28 CLIENT -> SERVER: QUIT
+2020-01-21 08:55:29 SMTP -> get_lines(): $data is ""
+2020-01-21 08:55:29 SMTP -> get_lines(): $str is "221 2.0.0 closing connection b15sm5814981pgh.40 - gsmtp"
+2020-01-21 08:55:29 SERVER -> CLIENT: 221 2.0.0 closing connection b15sm5814981pgh.40 - gsmtp
+2020-01-21 08:55:29 Connection: closed
+
+( ! ) Fatal error: Uncaught Error: Call to undefined function contains() in /home/vagrant/project_files/db/showdb/Notification/bulkNotify.php on line 37
+( ! ) Error: Call to undefined function contains() in /home/vagrant/project_files/db/showdb/Notification/bulkNotify.php on line 37
+Call Stack
+#	Time	Memory	Function	Location
+1	0.0511	362112	{main}( )	.../bulkNotify.php:0
