@@ -267,7 +267,7 @@ export default new Vuex.Store({
         fetchShows: ({commit, state}) => {
             return new Promise((resolve, reject) => {
                 axios({
-                    url: state.pathtodb+'/master.php',
+                    url: state.pathtodb+'master.php',
                     data: {'table': 'shows', 'action': 'sel'}, method: 'post',
                     headers: {
                         "Content-Type": "application/x-www-form-urlencoded"
