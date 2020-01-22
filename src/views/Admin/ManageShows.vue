@@ -483,7 +483,7 @@
                     await this.updateStatus();
                     if (this.hassuccess) {
                         this.show.image = imagename;
-                        this.currentshowimage = "http://showdb.ms/images/" + imagename;
+                        this.currentshowimage = "/images/" + imagename;
                     }
                 }
             },
@@ -497,7 +497,7 @@
 
                     if (this.success) {
                         this.showedit.image = imagename;
-                        this.editshowimage = "http://showdb.ms/images/" + imagename;
+                        this.editshowimage = "/images/" + imagename;
                     }
                     this.updateStatus();
                 }

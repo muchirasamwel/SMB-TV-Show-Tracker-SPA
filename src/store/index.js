@@ -4,6 +4,7 @@ import axios from "axios";
 import router from "../router";
 import header from "vuetify/lib/components/VDataTable/mixins/header";
 import $ from "jquery";
+
 Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
